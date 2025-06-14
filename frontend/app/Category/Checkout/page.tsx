@@ -19,7 +19,7 @@ const checkoutItems = [
   },
 ];
 
-  const subtotal = 665;
+  // const subtotal = 665;
   const total = 665;
   const freeShippingThreshold = 2000;
   const amountToFreeShipping = freeShippingThreshold - total;
