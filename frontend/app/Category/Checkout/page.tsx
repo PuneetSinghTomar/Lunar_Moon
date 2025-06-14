@@ -1,37 +1,24 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Minus, Plus } from "lucide-react";
-import Link from "next/link";
-import { Bell } from "lucide-react";
-const checkoutItems = [
-  {
-    id: 1,
-    name: "Augue Mauris",
-    price: 85,
-    image: "/chair-1.png",
-  },
-  {
-    id: 2,
-    name: "Eleifend Donec",
-    price: 580,
-    image: "/chair-2.png",
-  },
-];
+import { Minus, Plus, Bell } from "lucide-react";
 
-  // const subtotal = 665;
-  const total = 665;
-  const freeShippingThreshold = 2000;
-  const amountToFreeShipping = freeShippingThreshold - total;
-  const progressWidth = (total / freeShippingThreshold) * 100;
+interface CheckoutItem {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  quantity: number;
+}
 
 export default function CheckoutPage() {
-const [checkoutItems, setCheckoutItems] = useState<CheckoutItem[]>([]);
+  const [checkoutItems, setCheckoutItems] = useState<CheckoutItem[]>([]);
   const [total, setTotal] = useState(0);
 
   // Fetch from localStorage
   useEffect(() => {
-    const storedItems = localStorage.getItem('checkoutItems');
+    const storedItems = localStorage.getItem("checkoutItems");
     if (storedItems) {
       const items = JSON.parse(storedItems).map((item: any) => ({
         ...item,
@@ -65,7 +52,9 @@ const [checkoutItems, setCheckoutItems] = useState<CheckoutItem[]>([]);
 
   const freeShippingThreshold = 2000;
   const amountToFreeShipping = Math.max(0, freeShippingThreshold - total);
-  const progressWidth = Math.min((total / freeShippingThreshold) * 100, 100);  return (
+  const progressWidth = Math.min((total / freeShippingThreshold) * 100, 100);
+
+  return (
     <div className="p-4 sm:p-8 md:p-10">
       <h1 className="text-3xl font-bold mb-8">Checkout</h1>
 
@@ -76,12 +65,22 @@ const [checkoutItems, setCheckoutItems] = useState<CheckoutItem[]>([]);
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="font-medium">First name <span className="text-red-500">*</span></label>
-              <input className="w-full border rounded-full px-4 py-2" defaultValue="Puneet" />
+              <label className="font-medium">
+                First name <span className="text-red-500">*</span>
+              </label>
+              <input
+                className="w-full border rounded-full px-4 py-2"
+                defaultValue="Puneet"
+              />
             </div>
             <div>
-              <label className="font-medium">Last name <span className="text-red-500">*</span></label>
-              <input className="w-full border rounded-full px-4 py-2" defaultValue="Tomar" />
+              <label className="font-medium">
+                Last name <span className="text-red-500">*</span>
+              </label>
+              <input
+                className="w-full border rounded-full px-4 py-2"
+                defaultValue="Tomar"
+              />
             </div>
           </div>
 
@@ -91,53 +90,89 @@ const [checkoutItems, setCheckoutItems] = useState<CheckoutItem[]>([]);
           </div>
 
           <div>
-            <label className="font-medium">Country / Region <span className="text-red-500">*</span></label>
+            <label className="font-medium">
+              Country / Region <span className="text-red-500">*</span>
+            </label>
             <select className="w-full border rounded-full px-4 py-2">
               <option>India</option>
             </select>
           </div>
 
           <div>
-            <label className="font-medium">Street address <span className="text-red-500">*</span></label>
-            <input className="w-full border rounded-full px-4 py-2" placeholder="House Number and Street Name" />
+            <label className="font-medium">
+              Street address <span className="text-red-500">*</span>
+            </label>
+            <input
+              className="w-full border rounded-full px-4 py-2"
+              placeholder="House Number and Street Name"
+            />
           </div>
           <div>
-            <label className="font-medium"> <span className="text-red-500"></span></label>
-            <input className="w-full border rounded-full px-4 py-2" placeholder="Apartment, suite, unit, etc. (optional)" />
+            <input
+              className="w-full border rounded-full px-4 py-2"
+              placeholder="Apartment, suite, unit, etc. (optional)"
+            />
           </div>
           <div>
-            <label className="font-medium">Town/ City <span className="text-red-500">*</span></label>
-            <input className="w-full border rounded-full px-4 py-2" placeholder="Enter The City/ Town" />
-          </div>
-           <div>
-            <label className="font-medium">State <span className="text-red-500">*</span></label>
-            <input className="w-full border rounded-full px-4 py-2" placeholder="Enter The State" />
-          </div>
-          <div>
-            <label className="font-medium">PIN Code <span className="text-red-500">*</span></label>
-            <input className="w-full border rounded-full px-4 py-2" placeholder="Enter The PIN Code" />
+            <label className="font-medium">
+              Town/ City <span className="text-red-500">*</span>
+            </label>
+            <input
+              className="w-full border rounded-full px-4 py-2"
+              placeholder="Enter The City/ Town"
+            />
           </div>
           <div>
-            <label className="font-medium">Phone Number <span className="text-red-500">*</span></label>
-            <input className="w-full border rounded-full px-4 py-2" placeholder="Enter The Phone Number" />
+            <label className="font-medium">
+              State <span className="text-red-500">*</span>
+            </label>
+            <input
+              className="w-full border rounded-full px-4 py-2"
+              placeholder="Enter The State"
+            />
           </div>
           <div>
-            <label className="font-medium">Email Address <span className="text-red-500">*</span></label>
-            <input className="w-full border rounded-full px-4 py-2" type="email" placeholder="Enter The Email Address" />
+            <label className="font-medium">
+              PIN Code <span className="text-red-500">*</span>
+            </label>
+            <input
+              className="w-full border rounded-full px-4 py-2"
+              placeholder="Enter The PIN Code"
+            />
           </div>
+          <div>
+            <label className="font-medium">
+              Phone Number <span className="text-red-500">*</span>
+            </label>
+            <input
+              className="w-full border rounded-full px-4 py-2"
+              placeholder="Enter The Phone Number"
+            />
+          </div>
+          <div>
+            <label className="font-medium">
+              Email Address <span className="text-red-500">*</span>
+            </label>
+            <input
+              className="w-full border rounded-full px-4 py-2"
+              type="email"
+              placeholder="Enter The Email Address"
+            />
+          </div>
+
           <div className="space-y-4">
-      <h3 className="text-lg font-semibold">Additional information</h3>
-      <div className="space-y-2">
-        <label className="block text-sm font-medium text-gray-700">
-          Order notes (optional)
-        </label>
-        <textarea
-          placeholder="Notes about your order, e.g. special notes for delivery."
-          className="w-full rounded-2xl border border-gray-300 p-4 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:border-transparent"
-          rows={5}
-        />
-      </div>
-    </div>
+            <h3 className="text-lg font-semibold">Additional information</h3>
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-700">
+                Order notes (optional)
+              </label>
+              <textarea
+                placeholder="Notes about your order, e.g. special notes for delivery."
+                className="w-full rounded-2xl border border-gray-300 p-4 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:border-transparent"
+                rows={5}
+              />
+            </div>
+          </div>
         </div>
 
         {/* Order Summary */}
@@ -186,7 +221,6 @@ const [checkoutItems, setCheckoutItems] = useState<CheckoutItem[]>([]);
           ))}
 
           <div className="space-y-6">
-            {/* Subtotal and Total */}
             <div className="space-y-2">
               <div className="flex justify-between items-center border-b border-gray-300 pb-2">
                 <span className="text-md font-semibold">Subtotal</span>
@@ -198,7 +232,6 @@ const [checkoutItems, setCheckoutItems] = useState<CheckoutItem[]>([]);
               </div>
             </div>
 
-            {/* Free Shipping Progress */}
             <div className="space-y-2">
               <p className="text-sm">
                 Add ${amountToFreeShipping.toFixed(2)} more to get free shipping!
@@ -211,30 +244,27 @@ const [checkoutItems, setCheckoutItems] = useState<CheckoutItem[]>([]);
               </div>
             </div>
 
-            {/* Payment Error Message */}
             <div className="flex items-start gap-3 bg-gray-100 p-4 rounded-lg text-sm text-gray-700">
               <Bell className="h-5 w-5 mt-1" />
               <p>
-                Sorry, it seems that there are no available payment methods. Please{' '}
+                Sorry, it seems that there are no available payment methods. Please{" "}
                 <a href="/contact" className="text-teal-800 underline">
                   contact us
-                </a>{' '}
+                </a>{" "}
                 if you require assistance or wish to make alternate arrangements.
               </p>
             </div>
 
-            {/* Privacy Note */}
             <p className="text-xs text-gray-500 leading-relaxed">
               Your personal data will be used to process your order, support your
               experience throughout this website, and for other purposes described in
-              our{' '}
+              our{" "}
               <a href="/privacy-policy" className="text-orange-600 underline">
                 privacy policy
               </a>
               .
             </p>
 
-            {/* Place Order Button */}
             <button className="w-full bg-orange-400 hover:bg-orange-600 text-white font-semibold py-3 rounded-full text-md">
               Place order
             </button>

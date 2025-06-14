@@ -1,14 +1,14 @@
-import Image from "next/image";
-import Heroic from "@/components/Heroic";
 import FeaturesSection from "@/components/FeaturesSection";
 import Carousel from "@/components/Carousel";
 import SideCarasoul from "@/components/SideCarasoul";
+import Heroic from "@/components/Heroic";
 
 export default function Home() {
   return (
     <div>
       <Heroic />
       <FeaturesSection />
+
       {/* Responsive Flex Section */}
       <div className="flex flex-col md:flex-row w-full py-8">
         {/* Image Section */}

@@ -46,8 +46,8 @@ const products = [
 const ProductCarousel: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const itemRef = useRef<HTMLDivElement>(null);
-  const [currentIndex, setCurrentIndex] = useState(1);
   const [itemWidth, setItemWidth] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(1);
 
   useEffect(() => {
     const updateItemWidth = () => {
@@ -76,14 +76,14 @@ const ProductCarousel: React.FC = () => {
     }
   };
 
-  const handleScroll = () => {
-    if (scrollRef.current && itemWidth) {
-      const index = Math.round(scrollRef.current.scrollLeft / itemWidth) + 1;
-      setCurrentIndex(index);
-    }
-  };
-
   useEffect(() => {
+    const handleScroll = () => {
+      if (scrollRef.current && itemWidth) {
+        const index = Math.round(scrollRef.current.scrollLeft / itemWidth) + 1;
+        setCurrentIndex(index);
+      }
+    };
+
     const ref = scrollRef.current;
     ref?.addEventListener('scroll', handleScroll);
     return () => ref?.removeEventListener('scroll', handleScroll);
@@ -93,7 +93,7 @@ const ProductCarousel: React.FC = () => {
     <section className="px-4 sm:px-6 py-12">
       {/* Title + Pagination */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2 sm:gap-0">
-        <h2 className="text-lg  sm:text-xl font-bold uppercase">The Latest Lighting Designs</h2>
+        <h2 className="text-lg sm:text-xl font-bold uppercase">The Latest Lighting Designs</h2>
         <div className="w-full sm:w-auto flex justify-between items-center text-sm sm:justify-start gap-4">
           <ChevronLeft className="cursor-pointer" onClick={scrollLeft} />
           <span>{currentIndex} / {products.length}</span>

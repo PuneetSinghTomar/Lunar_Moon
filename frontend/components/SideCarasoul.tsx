@@ -40,19 +40,11 @@ const SideCarasoul: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [visibleIndex, setVisibleIndex] = useState(1)
 
-  const scrollLeft = () => {
-    scrollRef.current?.scrollBy({ left: -300, behavior: 'smooth' })
-  }
-
-  const scrollRight = () => {
-    scrollRef.current?.scrollBy({ left: 300, behavior: 'smooth' })
-  }
-
   useEffect(() => {
     const handleScroll = () => {
       if (!scrollRef.current) return
       const scrollLeft = scrollRef.current.scrollLeft
-      const itemWidth = 200 + 24 // width + gap
+      const itemWidth = 224 // 200 + 24 (gap)
       const index = Math.round(scrollLeft / itemWidth) + 1
       setVisibleIndex(index)
     }
@@ -61,6 +53,14 @@ const SideCarasoul: React.FC = () => {
     current?.addEventListener('scroll', handleScroll)
     return () => current?.removeEventListener('scroll', handleScroll)
   }, [])
+
+  const scrollLeft = () => {
+    scrollRef.current?.scrollBy({ left: -300, behavior: 'smooth' })
+  }
+
+  const scrollRight = () => {
+    scrollRef.current?.scrollBy({ left: 300, behavior: 'smooth' })
+  }
 
   return (
     <div className="bg-linen border-y border-black">

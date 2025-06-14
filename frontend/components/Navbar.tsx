@@ -12,7 +12,6 @@ import {
   Bars3Icon,
   XMarkIcon,
   MagnifyingGlassIcon,
-  HeartIcon,
   ShoppingBagIcon,
   UserIcon
 } from '@heroicons/react/24/outline';
@@ -25,10 +24,10 @@ import {
   MapPin,
   Phone,
   Sofa,
-  Table,
-  Heart
+  Table
 } from 'lucide-react';
 import Link from "next/link";
+import { Heart } from 'lucide-react'; // ✅ used inside <Link> Wishlist
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -37,7 +36,7 @@ const navigation = [
   { name: 'Contact Us', href: '/contact' },
 ];
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
@@ -148,7 +147,7 @@ export default function Navbar() {
                   <UserIcon className="h-6 w-6" />
 
                   <div className="relative">
-                    <HeartIcon className="h-6 w-6" />
+                    <Heart className="h-6 w-6" />
                     {wishlist.length > 0 && (
                       <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-4 h-4 text-xs flex items-center justify-center">
                         {wishlist.length}
